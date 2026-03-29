@@ -1,0 +1,309 @@
+:root {
+ {
+  "short_name": "SGA",
+  "name": "Système Gestion Agents CleanCo",
+  "description": "Application de gestion des agents, planning, radios et habillement",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#2c3e50",
+  "theme_color": "#34495e",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "./"
+}   --bg-dark: #1a2634;
+    --bg-card: #2c3e50;
+    --bg-header: #34495e;
+    --primary: #3498db;
+    --success: #27ae60;
+    --warning: #f39c12;
+    --danger: #e74c3c;
+    --text-light: #ecf0f1;
+    --text-muted: #95a5a6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-light);
+}
+
+#app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+}
+
+.app-header {
+    background: var(--bg-header);
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.app-header h1 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.app-header #sub-title {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+#main-content {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.menu-button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.menu-button {
+    background: linear-gradient(135deg, var(--primary), #2980b9);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: left;
+}
+
+.menu-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.menu-button.quit-button {
+    background: linear-gradient(135deg, var(--danger), #c0392b);
+}
+
+.menu-button.back-button {
+    background: linear-gradient(135deg, #7f8c8d, #6c7a89);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+}
+
+.overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: var(--bg-card);
+    border-radius: 16px;
+    max-width: 95%;
+    width: 500px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-header {
+    background: var(--bg-header);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h2 {
+    font-size: 1.2rem;
+}
+
+.popup-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.popup-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+.popup-footer {
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.popup-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.popup-button.green { background: var(--success); color: white; }
+.popup-button.blue { background: var(--primary); color: white; }
+.popup-button.red { background: var(--danger); color: white; }
+.popup-button.gray { background: #7f8c8d; color: white; }
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #4a627a;
+    background: #1e2a36;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.classement-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.classement-table th,
+.classement-table td {
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.classement-table th {
+    background: var(--bg-header);
+    font-weight: 600;
+}
+
+.planning-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.7rem;
+}
+
+.planning-table th,
+.planning-table td {
+    padding: 6px 4px;
+    text-align: center;
+    border: 1px solid #2c3e50;
+}
+
+.shift-cell {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.shift-cell:hover {
+    opacity: 0.8;
+}
+
+.status-badge.active {
+    background: var(--success);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+.status-badge.inactif {
+    background: var(--danger);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    display: inline-block;
+}
+
+.action-btn {
+    padding: 4px 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    margin: 0 2px;
+}
+
+.action-btn.small { padding: 3px 6px; }
+.action-btn.blue { background: var(--primary); color: white; }
+.action-btn.red { background: var(--danger); color: white; }
+.action-btn.green { background: var(--success); color: white; }
+
+#snackbar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    z-index: 2000;
+    white-space: nowrap;
+}
+
+.rank-1 { color: #f1c40f; font-weight: bold; }
+.rank-2 { color: #bdc3c7; font-weight: bold; }
+.rank-3 { color: #d35400; font-weight: bold; }
+
+@media (max-width: 480px) {
+    .popup-content { width: 95%; }
+    .planning-table { font-size: 0.6rem; }
+    #snackbar { white-space: normal; text-align: center; max-width: 90%; }
+    .menu-button { padding: 12px 15px; font-size: 0.9rem; }
+}
