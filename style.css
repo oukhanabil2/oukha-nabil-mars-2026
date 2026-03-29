@@ -1,28 +1,5 @@
 :root {
- {
-  "short_name": "SGA",
-  "name": "Système Gestion Agents CleanCo",
-  "description": "Application de gestion des agents, planning, radios et habillement",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "start_url": "./index.html",
-  "background_color": "#2c3e50",
-  "theme_color": "#34495e",
-  "display": "standalone",
-  "orientation": "portrait",
-  "scope": "./"
-}   --bg-dark: #1a2634;
+    --bg-dark: #1a2634;
     --bg-card: #2c3e50;
     --bg-header: #34495e;
     --primary: #3498db;
@@ -166,9 +143,11 @@ body {
 }
 
 .popup-body {
+    background: #1e2a36; /* fond plus sombre pour meilleur contraste */
     padding: 20px;
     overflow-y: auto;
     max-height: 60vh;
+    color: var(--text-light);
 }
 
 .popup-footer {
@@ -203,7 +182,7 @@ body {
     color: var(--text-muted);
 }
 
-.form-input {
+.form-input, select, input, textarea {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
@@ -211,6 +190,11 @@ body {
     background: #1e2a36;
     color: white;
     font-size: 0.9rem;
+}
+
+select option {
+    background: #1e2a36;
+    color: white;
 }
 
 .classement-table {
@@ -229,6 +213,10 @@ body {
 .classement-table th {
     background: var(--bg-header);
     font-weight: 600;
+}
+
+.classement-table tbody tr:nth-child(even) {
+    background-color: #2c3e50; /* alternance pour lisibilité */
 }
 
 .planning-table {
@@ -300,6 +288,35 @@ body {
 .rank-1 { color: #f1c40f; font-weight: bold; }
 .rank-2 { color: #bdc3c7; font-weight: bold; }
 .rank-3 { color: #d35400; font-weight: bold; }
+
+/* Bloc statistiques amélioré */
+.stats-block {
+    background: #3a546d;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Section info avec fond plus clair */
+.info-section {
+    background: #1e2a36;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Cellules fériées */
+.holiday {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Dimanche */
+.sunday {
+    background-color: #2c3e50;
+    font-weight: bold;
+}
 
 @media (max-width: 480px) {
     .popup-content { width: 95%; }
